@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Me - Nitish Raghavan</title>
+    <style>
+      /* General body and page styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #fff;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        background: url('https://images.pexels.com/photos/4480535/pexels-photo-4480535.jpeg')
+          no-repeat center center fixed;
+        background-size: cover;
+      }
+
+      header {
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+        animation: fadeIn 2s ease-out;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 3em;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 10px 0;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 20px;
+        font-size: 1.2em;
+        transition: color 0.3s ease;
+      }
+
+      nav a:hover {
+        color: #ffbb00;
+        font-weight: bold;
+      }
+
+      .contact-section {
+        padding: 40px 20px;
+        max-width: 800px;
+        margin: 50px auto;
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        animation: fadeIn 1.5s ease-out;
+      }
+
+      .contact-section h2 {
+        font-size: 2.5em;
+        color: #ffbb00;
+        margin-bottom: 20px;
+      }
+
+      .contact-section p {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+        line-height: 1.5;
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .contact-form label {
+        font-size: 1.2em;
+        text-align: left;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        padding: 15px;
+        font-size: 1em;
+        border: none;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.8);
+        width: 100%;
+      }
+
+      .contact-form button {
+        padding: 15px;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 5px;
+        background: #ffbb00;
+        color: #000;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .contact-form button:hover {
+        background: #e6a800;
+      }
+
+      footer {
+        background: rgba(0, 0, 0, 0.9);
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        border-top: 2px solid #444;
+      }
+
+      footer p {
+        margin: 0;
+        font-size: 1.1em;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Nitish Raghavan</h1>
+      <p>Mechanical Designer | Battery Modules | IC Engines</p>
+    </header>
+
+    <nav>
+      <a href="/">Home</a>
+      <a href="/experience">Experience</a>
+      <a href="/projects">Projects</a>
+      <a href="/contact" class="active">Contact</a>
+    </nav>
+
+    <div class="contact-section">
+      <h2>Contact Me</h2>
+      <p>
+        If you have any questions or want to get in touch, feel free to send me
+        a message!
+      </p>
+      <div class="contact-card">
+        <form class="contact-form" id="contactForm">
+          <label for="name">Full Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            placeholder="Your full name"
+          />
+
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="Your email address"
+          />
+
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            required
+            placeholder="Your message"
+          ></textarea>
+
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        &copy; 2025 Nitish Raghavan - Mechanical Design Portfolio. All Rights
+        Reserved.
+      </p>
+    </footer>
+  </body>
+</html>

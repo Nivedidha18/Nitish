@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects - Nitish Raghavan</title>
+    <style>
+      /* Basic Reset and Global Styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: url('https://images.pexels.com/photos/4480535/pexels-photo-4480535.jpeg')
+          no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header {
+        text-align: center;
+        padding: 20px 0;
+        background: rgba(60, 24, 24, 0.6);
+        color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.5em;
+      }
+
+      header p {
+        margin-top: 5px;
+        font-size: 1em;
+        color: #ccc;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 10px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      }
+
+      nav a {
+        text-decoration: none;
+        color: white;
+        margin: 0 15px;
+        font-size: 1.1em;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
+
+      /* Section for Project Cards */
+      section {
+        padding: 100px 20px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        flex: 1;
+      }
+
+      /* Project Container */
+      .project-container {
+        display: flex;
+        justify-content: flex-start; /* Align content to the left */
+        align-items: center;
+        background: rgba(255, 255, 255, 0.7); /* Transparent white */
+        border-radius: 10px;
+        padding: 30px;
+        gap: 40px;
+        width: 808px; /* Fixed width */
+        height: 370px; /* Fixed height */
+        margin: 30px 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        overflow: hidden; /* Prevent content from overflowing */
+      }
+
+      /* Left Image Container (Horizontal Scrolling) */
+      .project-images {
+        display: flex;
+        gap: 10px; /* Space between images */
+        width: 50%; /* Half of the project container width */
+        max-width: 404px; /* Ensure it takes exactly half of 808px */
+        height: 100%; /* Ensures it fills the project container height */
+        overflow-x: scroll; /* Enables horizontal scrolling */
+        scroll-behavior: smooth; /* Smooth scrolling effect */
+        padding-bottom: 10px; /* Space to avoid cut-off at the bottom */
+        box-sizing: border-box; /* Ensures padding doesn't increase dimensions */
+      }
+
+      .project-images img {
+        height: 300px; /* Fixed height for the images */
+        object-fit: cover;
+        border-radius: 10px;
+        min-width: 300px; /* Width for each image */
+        flex: 0 0 auto;
+      }
+
+      .project-content {
+        width: 50%;
+        color: #333;
+        text-align: left;
+      }
+
+      .project-content h3 {
+        font-size: 2em;
+        margin-bottom: 10px;
+      }
+
+      .project-content p {
+        font-size: 1.1em;
+        margin-bottom: 20px;
+      }
+
+      .view-more-btn {
+        padding: 10px 15px;
+        font-size: 1em;
+        background-color: #ff5f5f;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .view-more-btn:hover {
+        background-color: #ff3f3f;
+      }
+
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding-top: 60px;
+      }
+
+      .modal-content {
+        background-color: rgba(255, 255, 255, 0.9); /* Transparent white */
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 900px;
+      }
+
+      .modal-body {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 images in a row */
+        gap: 20px;
+        text-align: center;
+      }
+
+      .modal-body img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+
+      .modal-details {
+        grid-column: span 3;
+        color: #333;
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.6
+        ); /* Slightly transparent text background */
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+      }
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      footer {
+        text-align: center;
+        padding: 30px 0;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        font-size: 1.1em;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+      }
+      .modal-details,
+      .modal-overview,
+      .modal-specifications,
+      .modal-challenges,
+      .modal-outcome {
+        color: #222; /* Dark black text */
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.9
+        ); /* Light background for readability */
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      .modal-specifications table th,
+      .modal-specifications table td {
+        color: #222; /* Dark text inside the table */
+        border: 1px solid #ddd;
+        padding: 10px;
+      }
+
+      .modal-overview h2,
+      .modal-details h3,
+      .modal-specifications h3,
+      .modal-challenges h3,
+      .modal-outcome h3 {
+        color: #000; /* Strong black for headings */
+        font-size: 1.8em;
+      }
+
+      .modal-details ul li {
+        color: #333; /* Light black for bullet points */
+      }
+
+      .modal-challenges p,
+      .modal-outcome p {
+        color: #444; /* Slightly lighter black for paragraphs */
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Nitish Raghavan</h1>
+      <p>Mechanical Designer | Battery Modules | IC Engines</p>
+    </header>
+
+    <nav>
+      <a href="/home">Home</a>
+      <a href="/experience">Experience</a>
+      <a href="/project">Project</a>
+      <a href="/contact">Contact</a>
+    </nav>
+
+    <section>
+      <!-- Project 1 Container -->
+      <div class="project-container">
+        <!-- Left Image (Horizontal Scroll) -->
+        <div class="project-images">
+          <img
+            src="{{ url_for('static', filename='images/Project1.1.jpeg') }}"
+            alt="Project Image 1"
+          />
+          <img
+            src="{{ url_for('static', filename='images/Project1.2.jpeg') }}"
+            alt="Project Image 2"
+          />
+          <img
+            src="{{ url_for('static', filename='images/Project1.3.jpeg') }}"
+            alt="Project Image 3"
+          />
+        </div>
+
+        <!-- Right Content (Title + Description + Button) -->
+        <div class="project-content">
+          <h3>Pouch Cell Battery Design for Electric Vehicles</h3>
+          <p>
+            Designed a modular pouch cell battery system specifically for
+            electric vehicles, focusing on efficiency and compactness.
+          </p>
+          <button id="viewProjectBtn1" class="view-more-btn">View More</button>
+        </div>
+      </div>
+
+      <!-- Modal for Project 1 -->
+      <div id="projectModal1" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="modal-body">
+            <!-- Images in Grid -->
+            <img
+              src="{{ url_for('static', filename='images/Project1.1.jpeg') }}"
+              alt="Pouch Cell Design 1"
+            />
+            <img
+              src="{{ url_for('static', filename='images/Project1.2.jpeg') }}"
+              alt="Pouch Cell Design 2"
+            />
+            <img
+              src="{{ url_for('static', filename='images/Project1.3.jpeg') }}"
+              alt="Pouch Cell Design 3"
+            />
+            <div class="modal-details">
+              <h2>Pouch Cell Battery Design for Electric Vehicles</h2>
+              <p>
+                This project focuses on the development of an advanced pouch
+                cell battery system tailored for electric vehicle applications.
+                Our objective was to create a high-energy-density, lightweight,
+                and modular battery solution optimized for performance and
+                safety.
+              </p>
+              <h3>Key Features & Achievements</h3>
+              <ul>
+                <li>
+                  Innovative Design: Engineered a modular pouch cell battery
+                  pack to enhance scalability and packaging efficiency within EV
+                  chassis.
+                </li>
+                <li>
+                  Advanced Material Selection: Utilized high-performance
+                  materials including NMC (Nickel Manganese Cobalt) cathodes,
+                  graphite, and SiOx anodes, achieving a high discharge capacity
+                  of 18.6Ah per cell.
+                </li>
+                <li>
+                  Thermal Management: Developed efficient cooling strategies to
+                  maintain optimal operating temperatures and prevent thermal
+                  runaway.
+                </li>
+                <li>
+                  Lightweight Structure: Designed the battery enclosure with
+                  lightweight materials without compromising structural
+                  integrity and safety standards.
+                </li>
+                <li>
+                  Performance Optimization: Conducted extensive simulations and
+                  validation tests to optimize energy density, charge/discharge
+                  cycles, and power output under real-world driving conditions.
+                </li>
+                <li>
+                  Safety and Reliability: Integrated multiple safety features,
+                  including overcurrent protection, thermal sensors, and
+                  reinforced cell casings.
+                </li>
+              </ul>
+            </div>
+
+            <!-- Technical Specifications -->
+            <div class="modal-specifications">
+              <h3>Technical Specifications</h3>
+              <table>
+                <tr>
+                  <th>Cell Chemistry</th>
+                  <td>NMC + Graphite + SiOx</td>
+                </tr>
+                <tr>
+                  <th>Discharge Capacity</th>
+                  <td>18.6 Ah</td>
+                </tr>
+                <tr>
+                  <th>Nominal Voltage</th>
+                  <td>3.7V</td>
+                </tr>
+
+                <tr>
+                  <th>Cycle Life</th>
+                  <td>1000+ cycles</td>
+                </tr>
+                <tr>
+                  <th>Operating Temperature</th>
+                  <td>-20°C to 60°C</td>
+                </tr>
+                <tr>
+                  <th>Weight</th>
+                  <td>600g per cell</td>
+                </tr>
+              </table>
+            </div>
+
+            <!-- Challenges and Solutions -->
+            <div class="modal-challenges">
+              <h3>Challenges and Solutions</h3>
+              <p>
+                Throughout the project, we encountered key challenges such as
+                thermal runaway risks, structural integration complexities, and
+                optimizing energy efficiency. These were addressed through
+                rigorous simulations, improved thermal insulation techniques,
+                and iterative design improvements based on real-world testing
+                data.
+              </p>
+            </div>
+
+            <!-- Collaboration and Outcome -->
+            <div class="modal-outcome">
+              <h3>Collaboration & Outcomes</h3>
+              <p>
+                This project was successfully executed in collaboration with
+                cross-functional teams, including electrical engineers, thermal
+                specialists, and automotive designers. The outcome was a highly
+                efficient and safe pouch cell battery system, meeting industry
+                standards and ready for potential commercialization in
+                next-generation electric vehicles.
+              </p>
+              <!-- Project details go here -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 Container -->
+      <div class="project-container">
+        <!-- Left Image (Horizontal Scroll) -->
+        <div class="project-images">
+          <img
+            src="{{ url_for('static', filename='images/Project2.1.jpeg') }}"
+            alt="Project Image 1"
+          />
+          <img
+            src="{{ url_for('static', filename='images/Project2.2.jpeg') }}"
+            alt="Project Image 2"
+          />
+          <img
+            src="{{ url_for('static', filename='images/Project2.3.jpeg') }}"
+            alt="Project Image 3"
+          />
+          <img
+            src="{{ url_for('static', filename='images/Project2.4.jpeg') }}"
+            alt="Project Image 3"
+          />
+        </div>
+
+        <!-- Right Content (Title + Description + Button) -->
+        <div class="project-content">
+          <h3>21700 Cylindrical Cell Battery Design</h3>
+          <p>
+            Developed a modular 21700 cylindrical cell battery system, optimized
+            for high energy storage and long-lasting performance across various
+            applications, including energy storage systems and portable power
+            solutions. Focused on improving charge cycles, enhancing safety
+            features, and ensuring optimal power output.
+          </p>
+          <button id="viewProjectBtn2" class="view-more-btn">View More</button>
+        </div>
+      </div>
+
+      <!-- Modal for Project 2 -->
+      <div id="projectModal2" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="modal-body">
+            <!-- Images in Grid -->
+            <img
+              src="{{ url_for('static', filename='images/Project2.1.jpeg') }}"
+              alt="Pouch Cell Design 1"
+            />
+            <img
+              src="{{ url_for('static', filename='images/Project2.2.jpeg') }}"
+              alt="Pouch Cell Design 2"
+            />
+            <img
+              src="{{ url_for('static', filename='images/Project2.3.jpeg') }}"
+              alt="Pouch Cell Design 3"
+            />
+            <img
+              src="{{ url_for('static', filename='images/Project2.4.jpeg') }}"
+              alt="Pouch Cell Design 3"
+            />
+            <div class="modal-details">
+              <h2>21700 Cylindrical Cell Battery Design</h2>
+              <p>
+                This project focuses on the development of a high-performance
+                21700 cylindrical cell battery system. Our objective was to
+                design a reliable and scalable battery solution that is suitable
+                for a range of applications, including energy storage systems,
+                portable power solutions, and industrial use. The project aimed
+                at achieving an optimal balance between energy density, safety,
+                and long-term performance.
+              </p>
+
+              <h3>Key Features & Achievements</h3>
+              <ul>
+                <li>
+                  Advanced Modular Design: Engineered a scalable cylindrical
+                  cell battery system that is versatile for different energy
+                  storage requirements and applications.
+                </li>
+                <li>
+                  High-Energy Density: Designed to achieve optimal energy
+                  storage with a nominal capacity of 5.0Ah per cell, perfect for
+                  long-lasting performance.
+                </li>
+                <li>
+                  Thermal Management: Developed efficient thermal management
+                  systems to prevent overheating, ensuring the battery operates
+                  within a safe temperature range and enhances battery life.
+                </li>
+                <li>
+                  Durability: Optimized the cell design to handle a large number
+                  of charge and discharge cycles (2000+ cycles) while
+                  maintaining excellent capacity retention.
+                </li>
+                <li>
+                  Safety Features: Incorporated various protective mechanisms,
+                  such as overcharge protection, overcurrent sensors, and
+                  advanced cell casings, ensuring the safety and reliability of
+                  the battery under all conditions.
+                </li>
+                <li>
+                  Compact Design: Maintained a compact and lightweight design
+                  while ensuring the battery structure meets industry standards
+                  for robustness and performance.
+                </li>
+              </ul>
+
+              <!-- Technical Specifications Container -->
+              <div class="modal-specifications-container">
+                <h3>Technical Specifications</h3>
+                <div class="modal-specifications">
+                  <table>
+                    <tr>
+                      <th>Cell Chemistry</th>
+                      <td>NMC + Graphite</td>
+                    </tr>
+                    <tr>
+                      <th>Discharge Capacity</th>
+                      <td>5000 mAh</td>
+                    </tr>
+                    <tr>
+                      <th>Nominal Voltage</th>
+                      <td>3.7V</td>
+                    </tr>
+                    <tr>
+                      <th>Cycle Life</th>
+                      <td>700+ cycles</td>
+                    </tr>
+                    <tr>
+                      <th>Operating Temperature</th>
+                      <td>-10°C to 60°C</td>
+                    </tr>
+                    <tr>
+                      <th>Weight</th>
+                      <td>70g per cell</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Challenges and Solutions -->
+              <div class="modal-challenges">
+                <h3>Challenges and Solutions</h3>
+                <p>
+                  One of the major challenges faced during this project was
+                  achieving a high energy density while ensuring thermal
+                  stability. To address this, we utilized advanced thermal
+                  management techniques such as specialized cooling fins and
+                  phase change materials (PCMs). Additionally, the cell design
+                  was iterated to enhance its resistance to mechanical stress
+                  and ensure its longevity.
+                </p>
+              </div>
+
+              <!-- Collaboration and Outcome -->
+              <div class="modal-outcome">
+                <h3>Collaboration & Outcomes</h3>
+                <p>
+                  This project was successfully carried out in collaboration
+                  with a team of mechanical engineers, materials scientists, and
+                  battery specialists. The outcome was a cutting-edge 21700
+                  cylindrical cell battery, ready for use in diverse industries
+                  such as energy storage, portable power generation, and more.
+                  The battery has undergone extensive testing and validation and
+                  is positioned to provide high reliability and performance for
+                  years to come.
+                </p>
+              </div>
+
+              <!-- Project details go here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        &copy; 2025 Nitish Raghavan - Mechanical Design Portfolio. All Rights
+        Reserved.
+      </p>
+    </footer>
+    <script>
+      // Modal Functionality for Project 1
+      const modal1 = document.getElementById('projectModal1');
+      const btn1 = document.getElementById('viewProjectBtn1');
+      const closeBtn1 = modal1.querySelector('.close');
+
+      btn1.onclick = function () {
+        modal1.style.display = 'block';
+      };
+
+      closeBtn1.onclick = function () {
+        modal1.style.display = 'none';
+      };
+
+      // Modal Functionality for Project 2
+      const modal2 = document.getElementById('projectModal2');
+      const btn2 = document.getElementById('viewProjectBtn2');
+      const closeBtn2 = modal2.querySelector('.close');
+
+      btn2.onclick = function () {
+        modal2.style.display = 'block';
+      };
+
+      closeBtn2.onclick = function () {
+        modal2.style.display = 'none';
+      };
+
+      // Close modal if clicked outside of it
+      window.onclick = function (event) {
+        if (event.target === modal1) {
+          modal1.style.display = 'none';
+        }
+        if (event.target === modal2) {
+          modal2.style.display = 'none';
+        }
+      };
+    </script>
+  </body>
+</html>
