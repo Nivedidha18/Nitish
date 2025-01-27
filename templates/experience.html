@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Experience - Nitish Raghavan</title>
+    <style>
+      /* Basic Reset and Global Styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: url('https://images.pexels.com/photos/4480535/pexels-photo-4480535.jpeg')
+          no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      header {
+        text-align: center;
+        padding: 20px 0;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 2.5em;
+      }
+
+      header p {
+        margin-top: 5px;
+        font-size: 1em;
+        color: #ccc;
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 10px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      }
+
+      nav a {
+        text-decoration: none;
+        color: white;
+        margin: 0 15px;
+        font-size: 1.1em;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
+      }
+
+      section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+        gap: 20px;
+        flex: 1; /* Allow section to take up available space */
+      }
+
+      .card {
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        width: 300px;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        color: white;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);
+      }
+
+      .card h3 {
+        margin: 10px 0;
+        color: #fff;
+      }
+
+      .card p {
+        margin: 10px 0;
+        color: #ccc;
+      }
+
+      .card .details {
+        display: none;
+        text-align: left;
+        margin-top: 10px;
+        color: #eee;
+      }
+
+      .card ul {
+        padding-left: 20px;
+      }
+
+      .card li {
+        margin-bottom: 10px;
+        line-height: 1.5;
+      }
+
+      .card .view-more {
+        margin-top: 10px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background 0.3s ease;
+      }
+
+      .card .view-more:hover {
+        background: rgba(255, 255, 255, 0.4);
+      }
+
+      footer {
+        text-align: center;
+        padding: 30px 0;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        font-size: 1.1em;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Nitish Raghavan</h1>
+      <p>Mechanical Designer | Battery Modules | IC Engines</p>
+    </header>
+
+    <nav>
+      <a href="/">Home</a>
+      <a href="/experience">Experience</a>
+      <a href="/project">Project</a>
+      <a href="/contact">Contact</a>
+    </nav>
+
+    <section>
+      <!-- Card 1: Mechanical Engineer -->
+      <div class="card">
+        <h3>Mechanical Engineer</h3>
+        <p>UK Battery Industrialization Centre, Hybrid, United Kingdom</p>
+        <p><strong>Feb 2024 - Present</strong></p>
+        <button class="view-more" onclick="toggleDetails(this)">
+          View More
+        </button>
+        <div class="details">
+          <ul>
+            <li>
+              Led design and R&D initiatives using PTC CREO and WINDCHILL,
+              producing high-quality 3D CAD models and 2D engineering drawings.
+            </li>
+            <li>
+              Collaborated with cross-functional teams to design cell and
+              battery components while meeting technical and quality standards.
+            </li>
+            <li>
+              Developed DFMEA checklists, lowering potential failure risks by
+              25% and improving production quality by 15%.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 2: Component Engineer -->
+      <div class="card">
+        <h3>Component Engineer</h3>
+        <p>UH Racing, Hybrid, United Kingdom</p>
+        <p><strong>Sep 2022 - Jan 2024</strong></p>
+        <button class="view-more" onclick="toggleDetails(this)">
+          View More
+        </button>
+        <div class="details">
+          <ul>
+            <li>
+              Contributed design initiatives in AutoCAD for vehicle development
+              and FEA analysis in ANSYS for optimized performance.
+            </li>
+            <li>
+              Interpreted simulation data to develop DFMEA plans, reducing
+              potential failure modes.
+            </li>
+            <li>
+              Collaborated to optimize component performance through simulations
+              and on-track testing, achieving a 5% increase in overall vehicle
+              performance.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 3: Design and Development Engineer -->
+      <div class="card">
+        <h3>Design and Development Engineer</h3>
+        <p>Basil Energetics, On-site</p>
+        <p><strong>May 2021 - Aug 2022</strong></p>
+        <button class="view-more" onclick="toggleDetails(this)">
+          View More
+        </button>
+        <div class="details">
+          <ul>
+            <li>
+              Created precise CAD models in PTC CREO for automotive and
+              machinery projects, ensuring compliance with standards and
+              meticulous design considerations and efficient data management
+              through Windchill.
+            </li>
+            <li>
+              Led machine component design for integration and clearances,
+              leveraging expertise in GD&T to ensure accurate manufacturing
+              processes.
+            </li>
+            <li>
+              Proficient in automotive cooling systems, adept at managing
+              parallel projects and coordinating supplier deliveries of
+              component designs for engineering releases. Implemented FEA/FEM
+              methodologies with ANSYS, reducing development cycles by 25% and
+              achieving a 98% task completion rate, enhancing cost-down
+              efficiency.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 4: R&D Engineer -->
+      <div class="card">
+        <h3>R&D Engineer</h3>
+        <p>Hyundai Motors, Contract</p>
+        <p><strong>Apr 2020 - Feb 2021</strong></p>
+        <button class="view-more" onclick="toggleDetails(this)">
+          View More
+        </button>
+        <div class="details">
+          <ul>
+            <li>
+              Managed a 25-member team in FSAE chassis and powertrain, enhancing
+              performance and design efficiency using CREO. Contributed to a 10%
+              improvement in adherence to industry standards through active
+              review participation.
+            </li>
+            <li>
+              Refined aerodynamics with StarCCM+ for higher efficiency. Ensured
+              structural integrity using FEA techniques like LS-DYNA and ANSYS
+              Workbench; proficiently managing data with UGS Teamcenter for
+              efficient organization.
+            </li>
+            <li>
+              Streamlined material procurement for competitive powertrain
+              through vendor collaboration while ensuring quality standards.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        &copy; 2025 Nitish Raghavan - Mechanical Design Portfolio. All Rights
+        Reserved.
+      </p>
+    </footer>
+
+    <script>
+      function toggleDetails(button) {
+        const details = button.nextElementSibling;
+        if (details.style.display === 'block') {
+          details.style.display = 'none';
+          button.innerText = 'View More';
+        } else {
+          details.style.display = 'block';
+          button.innerText = 'View Less';
+        }
+      }
+    </script>
+  </body>
+</html>
